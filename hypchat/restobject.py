@@ -169,7 +169,7 @@ class Room(RestObject):
         'topic': text,
         })
 
-    def history(self, date='recent', maxResults=200):
+    def history(self, date='recent', start='null', maxResults=200):
         """
         Requests the room history.
 
@@ -182,6 +182,7 @@ class Room(RestObject):
         'date': date,
         'timezone': tz,
         'max-results': maxResults,
+        'end-date': start,
         }
         resp = self._requests.get(self.url + '/history', params=params)
         return Linker._obj_from_text(resp.text, self._requests)
